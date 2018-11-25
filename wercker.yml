@@ -24,11 +24,11 @@ build:
     - script:
       name: Scan an image
       code: |
-        docker pull alpine:3.6
+        docker pull vulnerables/web-dvwa
         echo "docker network:"
         docker network ls | grep "w-" | awk ' { print $1; } ' | xargs docker network inspect
         docker ps -a
-        ./clair-scanner --ip=`hostname -i` --report="report.json" --clair="http://clair:6060" alpine:3.5
+        ./clair-scanner --ip=`hostname -i` --report="report.json" --clair="http://clair:6060" vulnerables/web-dvwa
         cat report.json
         OK=`grep "\"vulnerabilities\": \[\]" report.json | wc -l`
         echo $OK
