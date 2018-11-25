@@ -1,5 +1,3 @@
-box: alpine
-
 build:
   box: alpine
   docker: true
